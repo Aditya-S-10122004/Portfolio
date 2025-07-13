@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    footer{
+        margin-top: 95px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">Aditya's Portfolio</div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html" target="_self">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html" target="_self">Contact Me</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="pre">
+            <div class="gdes">
+                <h3>The following are some of the projects using HTML , CSS and JavaScript.</h3>
+            </div>
+        </section>
+        <section class="firstSection">
+            <div class="pContainer">
+                <div class="projects project1">
+                    <button class="p1img">
+                        <img src="simon.png" alt="simon">
+                    </button>
+                    <div class="p1name">
+                        Simon game
+                    </div>
+                </div>
+                <div class="projects project2">
+                    <button class="p2img">
+                        <img src="rps.png" alt="rock paper scissor">
+                    </button>
+                    <div class="p2name">
+                        Rock Paper Scissor
+                    </div>
+                </div>
+                <div class="projects project3">
+                    <button class="p3img">
+                        <img src="cc.png" alt="currency converter">
+                    </button>
+                    <div class="p3name">
+                        Currency Converter
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="secondSection">
+            <div class="click">
+                Click on the image to view
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <div class="footer">
+            <div class="text">
+                <h3>Made with <i class="fa-solid fa-heart fa-beat" style="color: #f50000;"></i> by Aditya Sadalagi</h3>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Web Developer'],
+            typeSpeed: 50,
+        });
+    </script>
+    <script>
+        const url1 = "https://aditya-s-10122004.github.io/Simon/";
+        const url2 = "https://aditya-s-10122004.github.io/Rock-Paper-Scissor/";
+        const url3 = "https://aditya-s-10122004.github.io/Currency-convertor/";
+        let gbtn1 = document.querySelector(".p1img");
+        let gbtn2 = document.querySelector(".p2img");
+        let gbtn3 = document.querySelector(".p3img");
+        gbtn1.addEventListener("click",()=>{
+            window.open(url1,"_blank");
+        });
+
+        gbtn2.addEventListener("click",()=>{
+            window.open(url2,"_blank");
+        });
+
+        gbtn3.addEventListener("click",()=>{
+            window.open(url3,"_blank");
+        });
+    </script>
+</body>
+</html>
