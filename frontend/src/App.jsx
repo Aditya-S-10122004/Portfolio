@@ -12,7 +12,11 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import useReveal from './hooks/useReveal'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+// Strip trailing slash so VITE_API_URL=/api/ and /api both work correctly
+const API = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/+$/, '')
+
+// Safety: if API returns an error object instead of array, use []
+const toArray = (data) => (Array.isArray(data) ? data : [])
 
 function App() {
   const [projects, setProjects] = useState([])
@@ -25,10 +29,10 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API}/projects`).then(r => r.json()).catch(() => []),
-      fetch(`${API}/skills`).then(r => r.json()).catch(() => []),
-      fetch(`${API}/placements`).then(r => r.json()).catch(() => []),
-      fetch(`${API}/links`).then(r => r.json()).catch(() => []),
+      fetch(`${API}/projects`).then(r => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/skills`).then(r => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/placements`).then(r => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/links`).then(r => r.json()).then(toArray).catch(() => []),
     ]).then(([proj, sk, place, lnk]) => {
       setProjects(proj)
       setSkills(sk)
