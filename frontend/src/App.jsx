@@ -12,7 +12,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import useReveal from './hooks/useReveal'
 
-const API = 'http://localhost:5000/api'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
 function App() {
   const [projects, setProjects] = useState([])

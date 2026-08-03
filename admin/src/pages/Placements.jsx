@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 
-const API = 'http://localhost:5000/api'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 const EMPTY = { company: '', role: '', date: '', status: 'pending', reason: '', package: '', notes: '' }
 
 const BADGE = {
