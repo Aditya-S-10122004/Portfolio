@@ -79,7 +79,7 @@ export default function Placements({ placements }) {
           <div className="placements-empty reveal">
             <div className="empty-icon">🏢</div>
             <h3>Placement Records Coming Soon</h3>
-            <p>Not added placement records yet.</p>
+            <p>It might take a while to load the placement activities. Please refresh the page once.</p>
           </div>
         )}
       </div>

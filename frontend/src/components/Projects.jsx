@@ -209,7 +209,7 @@ export default function Projects({ projects }) {
           <div className="projects-empty reveal">
             <div className="empty-icon">🚧</div>
             <h3>Projects Coming Soon</h3>
-            <p>Add your projects through the admin dashboard and they'll appear here.</p>
+            <p>It might take a while to load the projects. Please refresh the page once.</p>
           </div>
         )}
       </div>
