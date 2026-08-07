@@ -11,57 +11,76 @@ const NAV = [
   { icon: '✉️', label: 'Messages',   path: 'messages' },
 ]
 
-export default function Sidebar({ activePage, onNavigate }) {
+export default function Sidebar({ activePage, onNavigate, mobileOpen, onMobileClose }) {
   const { user, logout } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
 
-  return (
-    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-      {/* Header */}
-      <div className="sb-header">
-        <div className="sb-logo">
-          <span className="sb-logo-text">AS</span>
-          <span className="sb-logo-dot">.</span>
-        </div>
-        {!collapsed && <span className="sb-app-name">Portfolio Admin</span>}
-        <button className="sb-collapse-btn" onClick={() => setCollapsed(c => !c)} title="Toggle sidebar">
-          {collapsed ? '→' : '←'}
-        </button>
-      </div>
+  const handleNav = (path) => {
+    onNavigate(path)
+    onMobileClose() // close drawer on mobile after navigating
+  }
 
-      {/* User */}
-      {!collapsed && (
-        <div className="sb-user">
-          <div className="sb-avatar">{user?.[0]?.toUpperCase()}</div>
-          <div className="sb-user-info">
-            <p className="sb-username">{user}</p>
-            <p className="sb-role">Administrator</p>
-          </div>
-        </div>
+  return (
+    <>
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <div className="sb-backdrop" onClick={onMobileClose} />
       )}
 
-      {/* Nav */}
-      <nav className="sb-nav">
-        {NAV.map(item => (
+      <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
+        {/* Header */}
+        <div className="sb-header">
+          <div className="sb-logo">
+            <span className="sb-logo-text">AS</span>
+            <span className="sb-logo-dot">.</span>
+          </div>
+          {!collapsed && <span className="sb-app-name">Portfolio Admin</span>}
           <button
-            key={item.path}
-            className={`sb-nav-item ${activePage === item.path ? 'active' : ''}`}
-            onClick={() => onNavigate(item.path)}
-            title={collapsed ? item.label : ''}
+            className="sb-collapse-btn desktop-only"
+            onClick={() => setCollapsed(c => !c)}
+            title="Toggle sidebar"
           >
-            <span className="sb-icon">{item.icon}</span>
-            {!collapsed && <span className="sb-label">{item.label}</span>}
+            {collapsed ? '→' : '←'}
           </button>
-        ))}
-      </nav>
+          <button className="sb-collapse-btn mobile-only" onClick={onMobileClose} title="Close">
+            ✕
+          </button>
+        </div>
 
-      {/* Logout */}
-      <div className="sb-footer">
-        <button className="sb-logout" onClick={logout} title={collapsed ? 'Logout' : ''}>
-          <span>🚪</span>
-          {!collapsed && <span>Logout</span>}
-        </button>
-      </div>
-    </aside>
+        {/* User */}
+        {!collapsed && (
+          <div className="sb-user">
+            <div className="sb-avatar">{user?.[0]?.toUpperCase()}</div>
+            <div className="sb-user-info">
+              <p className="sb-username">{user}</p>
+              <p className="sb-role">Administrator</p>
+            </div>
+          </div>
+        )}
+
+        {/* Nav */}
+        <nav className="sb-nav">
+          {NAV.map(item => (
+            <button
+              key={item.path}
+              className={`sb-nav-item ${activePage === item.path ? 'active' : ''}`}
+              onClick={() => handleNav(item.path)}
+              title={collapsed ? item.label : ''}
+            >
+              <span className="sb-icon">{item.icon}</span>
+              {!collapsed && <span className="sb-label">{item.label}</span>}
+            </button>
+          ))}
+        </nav>
+
+        {/* Logout */}
+        <div className="sb-footer">
+          <button className="sb-logout" onClick={logout} title={collapsed ? 'Logout' : ''}>
+            <span>🚪</span>
+            {!collapsed && <span>Logout</span>}
+          </button>
+        </div>
+      </aside>
+    </>
   )
 }
