@@ -168,12 +168,20 @@ function ProjectCard({ project, index, onOpen }) {
 
 /* ── Section ───────────────────────────────────────── */
 export default function Projects({ projects }) {
-  const [filter, setFilter]     = useState('All')
+  const [filter,   setFilter]   = useState('All')
   const [selected, setSelected] = useState(null)
+  const [showAll,  setShowAll]  = useState(false)
 
   const displayed = filter === 'Featured'
     ? projects.filter(p => p.featured)
     : projects
+
+  const INITIAL_COUNT = 3
+  const visible  = showAll ? displayed : displayed.slice(0, INITIAL_COUNT)
+  const hasMore  = displayed.length > INITIAL_COUNT
+
+  // When filter changes, collapse back to first 3
+  const handleFilter = (f) => { setFilter(f); setShowAll(false) }
 
   return (
     <section className="section projects-section" id="projects">
@@ -191,7 +199,7 @@ export default function Projects({ projects }) {
               <button
                 key={f}
                 className={`filter-btn ${filter === f ? 'active' : ''}`}
-                onClick={() => setFilter(f)}
+                onClick={() => handleFilter(f)}
               >
                 {f}
               </button>
@@ -200,11 +208,32 @@ export default function Projects({ projects }) {
         )}
 
         {displayed.length > 0 ? (
-          <div className="projects-grid">
-            {displayed.map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} onOpen={setSelected} />
-            ))}
-          </div>
+          <>
+            <div className="projects-grid">
+              {visible.map((p, i) => (
+                <ProjectCard key={p.id} project={p} index={i} onOpen={setSelected} />
+              ))}
+            </div>
+
+            {/* View More / View Less */}
+            {hasMore && (
+              <div className="view-more-wrap">
+                <p className="view-more-count">
+                  Showing {showAll ? displayed.length : Math.min(INITIAL_COUNT, displayed.length)} of {displayed.length} projects
+                </p>
+                <button
+                  className={`view-more-btn ${showAll ? 'expanded' : ''}`}
+                  onClick={() => setShowAll(s => !s)}
+                >
+                  {showAll ? (
+                    <><span>View Less</span><span className="vm-arrow">↑</span></>
+                  ) : (
+                    <><span>View More</span><span className="vm-arrow">↓</span></>
+                  )}
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="projects-empty reveal">
             <div className="empty-icon">🚧</div>

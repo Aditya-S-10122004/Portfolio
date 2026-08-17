@@ -183,6 +183,73 @@
 .projects-empty h3 { font-size: 1.4rem; color: var(--text-primary); margin-bottom: 8px; }
 .projects-empty p { color: var(--text-muted); font-size: 0.9rem; }
 
+/* ── View More ─────────────────────────────── */
+.view-more-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.view-more-count {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.view-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 36px;
+  border-radius: 100px;
+  border: 1px solid rgba(108, 99, 255, 0.4);
+  background: rgba(108, 99, 255, 0.06);
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient shimmer background on hover */
+.view-more-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(0,212,255,0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.view-more-btn:hover::before { opacity: 1; }
+
+.view-more-btn:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 28px rgba(108, 99, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.vm-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Arrow bounces down when collapsed, up when expanded */
+.view-more-btn:not(.expanded) .vm-arrow {
+  animation: bounce-down 1.6s ease infinite;
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(4px); }
+}
+
+
 /* ── Read More button ─────────────────────────── */
 .read-more-btn {
   display: inline-flex;
