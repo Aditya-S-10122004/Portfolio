@@ -52,7 +52,7 @@ export default function Contact() {
               <span className="ci-icon">📧</span>
               <div>
                 <p className="ci-label">Email</p>
-                <p className="ci-value">adityasadalagi@gmail.com</p>
+                <p className="ci-value">adityasadalagi10@gmail.com</p>
               </div>
             </div>
             <div className="contact-info-item">
@@ -66,7 +66,7 @@ export default function Contact() {
               <span className="ci-icon">🎓</span>
               <div>
                 <p className="ci-label">College</p>
-                <p className="ci-value">SDM CET, Dharwad</p>
+                <p className="ci-value">SDMCET, Dharwad</p>
               </div>
             </div>
             <div className="contact-availability">
@@ -86,7 +86,7 @@ export default function Contact() {
                   name="name"
                   value={form.name}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="John Snow"
                   required
                 />
               </div>
