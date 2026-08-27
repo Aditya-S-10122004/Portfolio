@@ -29,12 +29,14 @@ app.use(cors({
 app.use(express.json());
 
 // ─── Routes ───────────────────────────────────────────────
-app.use('/api/auth',       require('./routes/auth'));
-app.use('/api/projects',   require('./routes/projects'));
-app.use('/api/skills',     require('./routes/skills'));
-app.use('/api/placements', require('./routes/placements'));
-app.use('/api/links',      require('./routes/links'));
-app.use('/api/messages',   require('./routes/messages'));
+app.use('/api/auth',         require('./routes/auth'));
+app.use('/api/projects',     require('./routes/projects'));
+app.use('/api/skills',       require('./routes/skills'));
+app.use('/api/placements',   require('./routes/placements'));
+app.use('/api/links',        require('./routes/links'));
+app.use('/api/messages',     require('./routes/messages'));
+app.use('/api/certificates', require('./routes/certificates'));
+app.use('/api/upload',       require('./routes/upload'));
 
 // ─── Health check ─────────────────────────────────────────
 app.get('/api/health', (req, res) => {

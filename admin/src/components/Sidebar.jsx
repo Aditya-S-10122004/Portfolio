@@ -3,12 +3,13 @@ import { useAuth } from '../context/AuthContext'
 import './Sidebar.css'
 
 const NAV = [
-  { icon: '🏠', label: 'Dashboard',  path: 'dashboard' },
-  { icon: '📁', label: 'Projects',   path: 'projects' },
-  { icon: '⚡', label: 'Skills',     path: 'skills' },
-  { icon: '🏢', label: 'Placements', path: 'placements' },
-  { icon: '🔗', label: 'Links',      path: 'links' },
-  { icon: '✉️', label: 'Messages',   path: 'messages' },
+  { icon: '🏠', label: 'Dashboard',    path: 'dashboard'    },
+  { icon: '📁', label: 'Projects',     path: 'projects'     },
+  { icon: '⚡', label: 'Skills',       path: 'skills'       },
+  { icon: '🎓', label: 'Certificates', path: 'certificates' },
+  { icon: '🏢', label: 'Placements',   path: 'placements'   },
+  { icon: '🔗', label: 'Links',        path: 'links'        },
+  { icon: '✉️', label: 'Messages',     path: 'messages'     },
 ]
 
 export default function Sidebar({ activePage, onNavigate, mobileOpen, onMobileClose }) {

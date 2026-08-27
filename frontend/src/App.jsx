@@ -7,6 +7,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
+import Certificates from './components/Certificates'
 import Placements from './components/Placements'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -19,11 +20,12 @@ const API = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replac
 const toArray = (data) => (Array.isArray(data) ? data : [])
 
 function App() {
-  const [projects, setProjects] = useState([])
-  const [skills, setSkills] = useState([])
-  const [placements, setPlacements] = useState([])
-  const [links, setLinks] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [projects,     setProjects]     = useState([])
+  const [skills,       setSkills]       = useState([])
+  const [placements,   setPlacements]   = useState([])
+  const [links,        setLinks]        = useState([])
+  const [certificates, setCertificates] = useState([])
+  const [loading,      setLoading]      = useState(true)
 
   useReveal()
 
@@ -33,11 +35,13 @@ function App() {
       fetch(`${API}/skills`).then(r => r.json()).then(toArray).catch(() => []),
       fetch(`${API}/placements`).then(r => r.json()).then(toArray).catch(() => []),
       fetch(`${API}/links`).then(r => r.json()).then(toArray).catch(() => []),
-    ]).then(([proj, sk, place, lnk]) => {
+      fetch(`${API}/certificates`).then(r => r.json()).then(toArray).catch(() => []),
+    ]).then(([proj, sk, place, lnk, certs]) => {
       setProjects(proj)
       setSkills(sk)
       setPlacements(place)
       setLinks(lnk)
+      setCertificates(certs)
       setLoading(false)
     })
   }, [])
@@ -51,6 +55,7 @@ function App() {
         <About />
         <Skills skills={skills} />
         <Projects projects={projects} />
+        <Certificates certificates={certificates} />
         <Placements placements={placements} />
         <Contact />
       </main>

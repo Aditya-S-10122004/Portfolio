@@ -53,7 +53,11 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
-  cursor: none; /* Custom cursor */
+}
+
+/* Hide default cursor only on pointer devices (mouse), not touch */
+@media (pointer: fine) {
+  body, a, button, [role="button"] { cursor: none; }
 }
 
 /* ── Scrollbar ─────────────────────────────────── */

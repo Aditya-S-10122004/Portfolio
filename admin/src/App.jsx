@@ -8,25 +8,28 @@ import Skills from './pages/Skills'
 import Placements from './pages/Placements'
 import Links from './pages/Links'
 import Messages from './pages/Messages'
+import Certificates from './pages/Certificates'
 import './index.css'
 import './pages/Messages.css'
 
 const PAGES = {
-  dashboard: Dashboard,
-  projects:  Projects,
-  skills:    Skills,
-  placements: Placements,
-  links:     Links,
-  messages:  Messages,
+  dashboard:    Dashboard,
+  projects:     Projects,
+  skills:       Skills,
+  placements:   Placements,
+  links:        Links,
+  messages:     Messages,
+  certificates: Certificates,
 }
 
 const PAGE_LABELS = {
-  dashboard: '🏠 Dashboard',
-  projects:  '📁 Projects',
-  skills:    '⚡ Skills',
-  placements:'🏢 Placements',
-  links:     '🔗 Links',
-  messages:  '✉️ Messages',
+  dashboard:    '🏠 Dashboard',
+  projects:     '📁 Projects',
+  skills:       '⚡ Skills',
+  placements:   '🏢 Placements',
+  links:        '🔗 Links',
+  messages:     '✉️ Messages',
+  certificates: '🎓 Certificates',
 }
 
 function AdminApp() {
