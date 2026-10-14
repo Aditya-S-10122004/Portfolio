@@ -34,19 +34,17 @@ export default function About() {
               Passionate About <span className="gradient-text">Technology</span>
             </h2>
 
-            <p className="about-bio reveal reveal-delay-2">
+            {/* <p className="about-bio reveal reveal-delay-2">
               I'm <strong>Aditya Sadalagi</strong>, a driven Computer Science student currently
               in my 7th semester at SDM College of Engineering and Technology, Dharwad.
               I thrive on building real-world projects that solve actual problems.
-            </p>
+            </p> */}
 
             <p className="about-bio reveal reveal-delay-3">
-              My passion lies in full-stack development — from crafting pixel-perfect UIs
-              to designing robust backends. I believe in writing clean, scalable code and
-              constantly pushing the boundaries of what I can build.
+              I'm <strong>Aditya Sadalagi</strong>, an Information Science and Engineering student with a CGPA of 8.85, passionate about software development, flutter development and problem-solving. Skilled in C, C++, and OOP, I’ve completed Web and App Development and currently focusing on GenAI.I actively practice DSA on LeetCode to enhance my coding and logical thinking skills.
             </p>
 
-            <div className="about-highlights reveal reveal-delay-4">
+            {/* <div className="about-highlights reveal reveal-delay-4">
               {highlights.map((h) => (
                 <div className="highlight-item" key={h.label}>
                   <span className="highlight-icon">{h.icon}</span>
@@ -56,7 +54,7 @@ export default function About() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

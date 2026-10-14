@@ -149,8 +149,8 @@
   border: 1px solid var(--border);
   border-radius: 20px;
   width: 100%;
-  max-width: 520px;
-  max-height: 90vh;
+  max-width: 800px;          /* wider */
+  max-height: 92vh;
   overflow-y: auto;
   position: relative;
   box-shadow: 0 40px 100px rgba(0,0,0,0.6);
@@ -178,17 +178,21 @@
 }
 .cert-modal-close:hover { background: var(--accent-primary); color: #fff; border-color: var(--accent-primary); }
 
+/* Image: show full certificate, no cropping */
 .cert-modal-img-wrap {
   width: 100%;
-  height: 220px;
-  overflow: hidden;
+  background: #fff;           /* white bg so cert looks natural */
   border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cert-modal-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;               /* natural height — no cropping */
   display: block;
+  object-fit: contain;
 }
 
 .cert-modal-body {
@@ -239,8 +243,8 @@
 .cert-modal-link:hover { background: #7c73ff; box-shadow: 0 0 20px rgba(108,99,255,0.4); }
 
 @media (max-width: 480px) {
-  .cert-modal-img-wrap { height: 160px; }
   .cert-modal-body { padding: 18px 20px 24px; }
   .cert-modal-overlay { padding: 0; align-items: flex-end; }
-  .cert-modal { border-radius: 20px 20px 0 0; max-height: 88vh; }
+  .cert-modal { border-radius: 20px 20px 0 0; max-height: 92vh; max-width: 100%; }
 }
+
