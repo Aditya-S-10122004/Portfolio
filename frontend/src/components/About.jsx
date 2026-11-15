@@ -18,7 +18,7 @@ const PILLARS = [
   },
   {
     icon: '🧠',
-    title: 'Generative AI & LLMs',
+    title: 'Generative AI',
     desc: 'Pioneering intelligent workflows, prompt orchestration, vector retrieval, and practical AI tooling integrated into modern software.',
   },
 ]
@@ -54,11 +54,11 @@ export default function About() {
 
               <div className="portrait-bio-summary">
                 <h3 className="portrait-name">Aditya Sadalagi</h3>
-                <p className="portrait-role">Information Science Engineer</p>
-                <div className="portrait-institution">
+                {/* <p className="portrait-role">Information Science Engineer</p> */}
+                {/* <div className="portrait-institution">
                   <span className="inst-icon">🏛️</span>
                   <span>SDM College of Engineering & Technology, Dharwad</span>
-                </div>
+                </div> */}
               </div>
 
               {/* Verified academic facts */}
@@ -87,12 +87,12 @@ export default function About() {
           <div className="about-narrative-column">
             <div className="about-narrative-card architectural-card reveal delay-2">
               <h3 className="narrative-heading">Background & Philosophy</h3>
-              <p className="narrative-p">
+              {/* <p className="narrative-p">
                 I am an Information Science and Engineering student at{' '}
                 <strong>SDM College of Engineering & Technology</strong> with an{' '}
                 <strong>8.85 CGPA</strong>. My journey bridges low-level algorithmic problem solving
                 with modern high-level product engineering.
-              </p>
+              </p> */}
               <p className="narrative-p">
                 Skilled in <strong>C, C++, and Object-Oriented Programming</strong>, I have completed comprehensive
                 work across Web and App Development (utilizing Flutter and modern JavaScript ecosystems). Currently,

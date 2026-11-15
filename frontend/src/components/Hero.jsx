@@ -3,9 +3,11 @@ import './Hero.css'
 
 const ROLES = [
   'Full-Stack Developer',
-  'Flutter & Mobile Engineer',
+  // 'Flutter & Mobile Engineer',
+  'Flutter Developer',
   'DSA & Problem Solver',
-  'GenAI & Systems Builder',
+  // 'GenAI & Systems Builder',
+  'GenAI Enthusiast',
 ]
 
 export default function Hero() {
@@ -60,7 +62,7 @@ export default function Hero() {
             <p className="hero-lead-text reveal visible delay-3">
               I'm <strong>Aditya Sadalagi</strong>, an Information Science & Engineering student at{' '}
               <span className="hero-accent-text">SDM College of Engineering & Technology, Dharwad</span>.
-              Combining algorithmic rigor (8.85 CGPA) with full-stack execution across Web, Flutter, and GenAI.
+              Combining algorithmic rigor with full-stack execution across Web, Flutter, and GenAI.
             </p>
 
             <div className="hero-actions-row reveal visible delay-4">
@@ -86,7 +88,7 @@ export default function Hero() {
             </div>
 
             {/* Quick Micro Credentials Bar */}
-            <div className="hero-micro-bar reveal visible delay-5">
+            {/* <div className="hero-micro-bar reveal visible delay-5">
               <div className="micro-item">
                 <span className="micro-val">8.85</span>
                 <span className="micro-lbl">CGPA</span>
@@ -106,7 +108,7 @@ export default function Hero() {
                 <span className="micro-val">SDMCET</span>
                 <span className="micro-lbl">Dharwad</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Column: Layered Architectural Showcase */}

@@ -90,17 +90,17 @@ export default function Skills({ skills }) {
                     <span className="skill-category-pill">{sk.category || 'Skill'}</span>
                     <h3 className="skill-title">{sk.name}</h3>
                   </div>
-                  <div className="skill-percent-badge">
+                  {/* <div className="skill-percent-badge">
                     {level}%
-                  </div>
+                  </div> */}
                 </div>
 
-                <div className="skill-meter-track">
+                {/* <div className="skill-meter-track">
                   <div
                     className="skill-meter-fill"
                     style={{ width: `${level}%` }}
                   />
-                </div>
+                </div> */}
               </div>
             )
           })}
