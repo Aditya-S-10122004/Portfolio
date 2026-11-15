@@ -1,64 +1,271 @@
-.footer {
+/* ==========================================================================
+   BESPOKE EDITORIAL FOOTER & MONUMENTAL TYPOGRAPHIC SIGNATURE
+   ========================================================================== */
+
+.editorial-footer {
   position: relative;
-  padding: 60px 0 40px;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
+  background-color: var(--bg-primary);
+  border-top: 1.5px solid var(--border-subtle);
+  padding-top: clamp(60px, 8vw, 100px);
+  padding-bottom: 32px;
   overflow: hidden;
+}
+
+.footer-top-container {
+  margin-bottom: clamp(40px, 6vw, 70px);
+}
+
+.footer-top-row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: space-between;
+}
+
+@media (min-width: 860px) {
+  .footer-top-row {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.footer-identity-col {
+  max-width: 320px;
+}
+
+.footer-brand-monogram {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.ft-mono {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--brand-green);
+}
+
+[data-theme="dark"] .ft-mono {
+  color: var(--brand-yellow);
+}
+
+.ft-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand-yellow);
+}
+
+.footer-bio-note {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links-heading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--trans-fast);
+}
+
+.footer-social-pill:hover {
+  color: var(--brand-green);
+  border-color: var(--brand-green);
+  background: var(--brand-green-tint);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .footer-social-pill:hover {
+  color: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+  background: var(--brand-yellow-tint);
+}
+
+.footer-pill-arrow {
+  font-size: 0.75rem;
+  transition: transform var(--trans-fast);
+}
+
+.footer-social-pill:hover .footer-pill-arrow {
+  transform: translate(2px, -2px);
+}
+
+.footer-action-col {
+  display: flex;
+  align-items: center;
+}
+
+.footer-scroll-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all var(--trans-fast);
+}
+
+.footer-scroll-top-btn:hover {
+  background: var(--brand-yellow);
+  color: #191e13;
+  border-color: var(--brand-yellow);
+  transform: translateY(-2px);
+}
+
+.top-arrow {
+  font-weight: 800;
+  transition: transform var(--trans-fast);
+}
+
+.footer-scroll-top-btn:hover .top-arrow {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   MONUMENTAL SIGNATURE: ADITYA SADALAGI
+   ========================================================================== */
+.footer-signature-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: clamp(20px, 4vw, 50px) 0;
+  background: var(--bg-secondary);
+  user-select: none;
+}
+
+.footer-signature-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-oversized-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 11vw, 11.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: nowrap;
+  /* Visual depth */
+  color: var(--text-primary);
+  transition: all var(--trans-base);
+}
+
+/* Light Mode: First name solid brand green, last name outline / brand yellow */
+.name-first {
+  color: var(--brand-green);
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.name-last {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brand-green);
+  display: inline-block;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+[data-theme="dark"] .name-first {
+  color: var(--brand-yellow);
+}
+
+[data-theme="dark"] .name-last {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brand-yellow);
+}
+
+.footer-signature-container:hover .name-last {
+  color: var(--brand-yellow);
+  -webkit-text-stroke: 2px transparent;
+}
+
+[data-theme="dark"] .footer-signature-container:hover .name-last {
+  color: #ffffff;
+  -webkit-text-stroke: 2px transparent;
+}
+
+.name-spacer {
+  display: inline-block;
+  width: clamp(10px, 2vw, 30px);
+}
+
+/* Bottom copyright bar */
+.footer-bottom-container {
+  margin-top: clamp(24px, 4vw, 36px);
+}
+
+.footer-bottom-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
   text-align: center;
 }
 
-.footer-glow {
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 600px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-secondary), transparent);
+@media (min-width: 768px) {
+  .footer-bottom-row {
+    flex-direction: row;
+    text-align: left;
+  }
 }
 
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: baseline;
-  gap: 1px;
-}
-
-.footer-tagline {
+.footer-copy-text {
+  font-size: 0.8rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
 }
 
-.heart { animation: heartbeat 1.5s ease infinite; display: inline-block; }
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.footer-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.footer-link:hover { color: var(--accent-primary); }
-
-.footer-copy {
+.footer-tech-stack {
+  font-size: 0.76rem;
   color: var(--text-muted);
-  font-size: 0.78rem;
-  margin-top: 8px;
-  font-family: var(--font-mono);
 }

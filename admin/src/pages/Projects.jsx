@@ -88,7 +88,7 @@ export default function Projects() {
                     <td>{p.featured ? '⭐' : '—'}</td>
                     <td style={{ fontSize: '0.78rem' }}>
                       {p.github_url && <a href={p.github_url} target="_blank" rel="noreferrer" style={{ color: 'var(--accent)', marginRight: 8 }}>GitHub</a>}
-                      {p.live_url && <a href={p.live_url} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-cyan)' }}>Live</a>}
+                      {p.live_url && <a href={p.live_url} target="_blank" rel="noreferrer" style={{ color: 'var(--brand-green)', fontWeight: 600 }}>Live ↗</a>}
                     </td>
                     <td>
                       <div style={{ display: 'flex', gap: 8 }}>

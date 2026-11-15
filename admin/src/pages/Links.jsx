@@ -57,7 +57,7 @@ export default function Links() {
                 {links.map(l => (
                   <tr key={l.id}>
                     <td style={{ fontWeight: 600 }}>{l.label}</td>
-                    <td><a href={l.url} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-cyan)', fontSize: '0.82rem' }}>{l.url.slice(0, 50)}{l.url.length > 50 ? '...' : ''}</a></td>
+                    <td><a href={l.url} target="_blank" rel="noreferrer" style={{ color: 'var(--brand-green)', fontSize: '0.82rem', fontWeight: 600 }}>{l.url.slice(0, 50)}{l.url.length > 50 ? '...' : ''}</a></td>
                     <td>{l.icon || '—'}</td>
                     <td>
                       <div style={{ display: 'flex', gap: 8 }}>

@@ -74,7 +74,7 @@ export default function Messages() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
                     <div>
                       <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: 4 }}>{selected.name}</h3>
-                      <a href={`mailto:${selected.email}`} style={{ color: 'var(--accent-cyan)', fontSize: '0.88rem' }}>{selected.email}</a>
+                      <a href={`mailto:${selected.email}`} style={{ color: 'var(--brand-green)', fontSize: '0.88rem', fontWeight: 600 }}>{selected.email}</a>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
                       <a href={`mailto:${selected.email}?subject=Re: Your message`} className="btn-a btn-edit-a btn-sm">Reply</a>

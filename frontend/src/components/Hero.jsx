@@ -1,193 +1,182 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Hero.css'
 
 const ROLES = [
-  'Web Developer',
-  'App Developer',
-  'Problem Solver',
-  'Tech Enthusiast',
+  'Full-Stack Developer',
+  'Flutter & Mobile Engineer',
+  'DSA & Problem Solver',
+  'GenAI & Systems Builder',
 ]
 
 export default function Hero() {
-  const canvasRef = useRef(null)
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [deleting, setDeleting] = useState(false)
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
+  const [isFading, setIsFading] = useState(false)
 
-  // ── Typewriter effect ───────────────────────────────────
   useEffect(() => {
-    const role = ROLES[roleIndex]
-    let timeout
+    const interval = setInterval(() => {
+      setIsFading(true)
+      setTimeout(() => {
+        setCurrentRoleIndex((prev) => (prev + 1) % ROLES.length)
+        setIsFading(false)
+      }, 350)
+    }, 3200)
 
-    if (!deleting && displayed.length < role.length) {
-      timeout = setTimeout(() => setDisplayed(role.slice(0, displayed.length + 1)), 80)
-    } else if (!deleting && displayed.length === role.length) {
-      timeout = setTimeout(() => setDeleting(true), 2000)
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40)
-    } else if (deleting && displayed.length === 0) {
-      setDeleting(false)
-      setRoleIndex((i) => (i + 1) % ROLES.length)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayed, deleting, roleIndex])
-
-  // ── Particle canvas ─────────────────────────────────────
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    let animId
-    let mouse = { x: canvas.width / 2, y: canvas.height / 2 }
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY }
-    window.addEventListener('mousemove', onMove)
-
-    // Create particles
-    const particles = Array.from({ length: 120 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 2 + 0.5,
-      opacity: Math.random() * 0.6 + 0.1,
-      color: Math.random() > 0.5 ? '108,99,255' : '0,212,255',
-    }))
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Cursor-reactive glow
-      const grd = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 350)
-      grd.addColorStop(0, 'rgba(108,99,255,0.12)')
-      grd.addColorStop(1, 'rgba(4,4,15,0)')
-      ctx.fillStyle = grd
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Particles
-      particles.forEach((p) => {
-        // Subtle attraction to mouse
-        const dx = mouse.x - p.x
-        const dy = mouse.y - p.y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < 200) {
-          p.vx += (dx / dist) * 0.008
-          p.vy += (dy / dist) * 0.008
-        }
-
-        p.vx *= 0.98
-        p.vy *= 0.98
-        p.x += p.vx
-        p.y += p.vy
-
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
-
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${p.color},${p.opacity})`
-        ctx.fill()
-      })
-
-      // Connect nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const d = Math.sqrt(dx * dx + dy * dy)
-          if (d < 100) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(108,99,255,${0.15 * (1 - d / 100)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-      window.removeEventListener('mousemove', onMove)
-    }
+    return () => clearInterval(interval)
   }, [])
 
-  const scrollToAbout = () => {
-    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollTo = (id) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section className="hero" id="home">
-      <canvas ref={canvasRef} className="hero-canvas" />
+    <section className="hero-section" id="home">
+      {/* Ambient Architectural Aura */}
+      <div className="ambient-glow ambient-yellow hero-aura-1" />
+      <div className="ambient-glow ambient-green hero-aura-2" />
 
-      <div className="hero-content">
-        <div className="hero-badge">
-          <span className="badge-dot" />
-          <span>Available for opportunities</span>
-        </div>
+      <div className="container hero-container">
+        <div className="hero-grid">
+          {/* Left Column: Editorial Headline & Content */}
+          <div className="hero-narrative">
+            <div className="hero-status-pill reveal visible">
+              <span className="editorial-tag-dot" />
+              <span className="hero-status-text">Available for Opportunities · 2026</span>
+            </div>
 
-        <h1 className="hero-name">
-          Hi, I'm <span className="gradient-text">Aditya</span>
-          <span className="hero-wave">👋</span>
-        </h1>
+            <h1 className="hero-headline reveal visible delay-1">
+              Building <span className="highlight-yellow">impactful</span> software &{' '}
+              <span className="highlight-green">intelligent</span> systems.
+            </h1>
 
-        <div className="hero-role">
-          <span className="role-prefix">I'm a </span>
-          <span className="role-typed">{displayed}</span>
-          <span className="type-cursor">|</span>
-        </div>
+            <div className="hero-role-ticker reveal visible delay-2">
+              <span className="ticker-label">Specializing in</span>
+              <div className="ticker-box">
+                <span className={`ticker-text ${isFading ? 'is-fading' : ''}`}>
+                  {ROLES[currentRoleIndex]}
+                </span>
+              </div>
+            </div>
 
-        <p className="hero-bio">
-          Studying Information Science & Engineering at{' '}
-          <span className="gradient-text-pink">SDM College of Engineering & Technology</span>,
-          Dharwad
-        </p>
+            <p className="hero-lead-text reveal visible delay-3">
+              I'm <strong>Aditya Sadalagi</strong>, an Information Science & Engineering student at{' '}
+              <span className="hero-accent-text">SDM College of Engineering & Technology, Dharwad</span>.
+              Combining algorithmic rigor (8.85 CGPA) with full-stack execution across Web, Flutter, and GenAI.
+            </p>
 
-        <div className="hero-cta">
-          <button className="btn btn-primary magnetic" onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}>
-            View My Work
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <button className="btn btn-outline magnetic" onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
-            Get In Touch
-          </button>
-        </div>
+            <div className="hero-actions-row reveal visible delay-4">
+              <button
+                type="button"
+                className="btn btn-green btn-hero"
+                onClick={() => scrollTo('#projects')}
+              >
+                <span>Explore Projects</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
 
-        <div className="hero-stats">
-          <div className="stat">
-            <span className="stat-num gradient-text">7th</span>
-            <span className="stat-label">Semester</span>
+              <button
+                type="button"
+                className="btn btn-outline btn-hero"
+                onClick={() => scrollTo('#contact')}
+              >
+                <span>Get in Touch</span>
+              </button>
+            </div>
+
+            {/* Quick Micro Credentials Bar */}
+            <div className="hero-micro-bar reveal visible delay-5">
+              <div className="micro-item">
+                <span className="micro-val">8.85</span>
+                <span className="micro-lbl">CGPA</span>
+              </div>
+              <div className="micro-divider" />
+              <div className="micro-item">
+                <span className="micro-val">ISE</span>
+                <span className="micro-lbl">Branch</span>
+              </div>
+              <div className="micro-divider" />
+              <div className="micro-item">
+                <span className="micro-val">7th Sem</span>
+                <span className="micro-lbl">Semester</span>
+              </div>
+              <div className="micro-divider" />
+              <div className="micro-item">
+                <span className="micro-val">SDMCET</span>
+                <span className="micro-lbl">Dharwad</span>
+              </div>
+            </div>
           </div>
-          <div className="stat-divider" />
-          <div className="stat">
-            <span className="stat-num gradient-text">ISE</span>
-            <span className="stat-label">Branch</span>
-          </div>
-          <div className="stat-divider" />
-          <div className="stat">
-            <span className="stat-num gradient-text">SDM</span>
-            <span className="stat-label">College</span>
+
+          {/* Right Column: Layered Architectural Showcase */}
+          <div className="hero-visual-column reveal visible delay-2">
+            <div className="hero-card-stack">
+              {/* Main Architectural Card */}
+              <div className="architectural-card hero-main-card">
+                <div className="hero-card-header">
+                  <div className="monogram-badge">
+                    <span>AS</span>
+                  </div>
+                  <div className="hero-geo-tag">
+                    <span className="geo-dot" />
+                    <span>15.4589° N, 75.0078° E</span>
+                  </div>
+                </div>
+
+                <div className="hero-card-body">
+                  <p className="card-kicker">ENGINEERING PROFILE</p>
+                  <h3 className="card-name-title">Aditya Sadalagi</h3>
+                  <p className="card-desc">
+                    Software engineer specializing in responsive web applications, mobile architectures with Flutter, and Generative AI workflows.
+                  </p>
+
+                  <div className="hero-focus-tags">
+                    <span className="focus-tag">React</span>
+                    <span className="focus-tag">Node.js</span>
+                    <span className="focus-tag">Flutter</span>
+                    <span className="focus-tag">PostgreSQL</span>
+                    <span className="focus-tag">C++ / DSA</span>
+                    <span className="focus-tag">GenAI</span>
+                  </div>
+                </div>
+
+                <div className="hero-card-footer">
+                  <div className="status-indicator">
+                    <span className="pulse-dot" />
+                    <span>Actively coding & solving DSA problems</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Asymmetric Highlight Bento */}
+              <div className="floating-bento bento-1">
+                <div className="bento-icon">⚡</div>
+                <div className="bento-text">
+                  <span className="bento-title">High Performance</span>
+                  <span className="bento-sub">Clean Architecture & Scalable Systems</span>
+                </div>
+              </div>
+
+              <div className="floating-bento bento-2">
+                <div className="bento-icon">🎯</div>
+                <div className="bento-text">
+                  <span className="bento-title">Problem Solving</span>
+                  <span className="bento-sub">Data Structures & LeetCode Practice</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <button className="scroll-indicator" onClick={scrollToAbout} aria-label="Scroll down">
-        <div className="scroll-wheel" />
-      </button>
+      {/* Subtle Scroll Cue */}
+      <div className="hero-scroll-cue" onClick={() => scrollTo('#about')}>
+        <span className="cue-text">SCROLL TO DISCOVER</span>
+        <div className="cue-line">
+          <div className="cue-dot" />
+        </div>
+      </div>
     </section>
   )
 }

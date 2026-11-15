@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { ThemeProvider } from './context/ThemeContext'
 import Login from './pages/Login'
 import Sidebar from './components/Sidebar'
 import Dashboard from './pages/Dashboard'
@@ -13,22 +14,22 @@ import './index.css'
 import './pages/Messages.css'
 
 const PAGES = {
-  dashboard:    Dashboard,
-  projects:     Projects,
-  skills:       Skills,
-  placements:   Placements,
-  links:        Links,
-  messages:     Messages,
+  dashboard: Dashboard,
+  projects: Projects,
+  skills: Skills,
+  placements: Placements,
+  links: Links,
+  messages: Messages,
   certificates: Certificates,
 }
 
 const PAGE_LABELS = {
-  dashboard:    '🏠 Dashboard',
-  projects:     '📁 Projects',
-  skills:       '⚡ Skills',
-  placements:   '🏢 Placements',
-  links:        '🔗 Links',
-  messages:     '✉️ Messages',
+  dashboard: '🏠 Dashboard',
+  projects: '📁 Projects',
+  skills: '⚡ Skills',
+  placements: '🏢 Placements',
+  links: '🔗 Links',
+  messages: '✉️ Messages',
   certificates: '🎓 Certificates',
 }
 
@@ -53,13 +54,20 @@ function AdminApp() {
       <div className="admin-body">
         {/* Mobile top header */}
         <header className="mobile-header">
-          <button className="mobile-hamburger" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
-            <span /><span /><span />
+          <button
+            type="button"
+            className="mobile-hamburger"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open navigation menu"
+          >
+            <span />
+            <span />
+            <span />
           </button>
           <span className="mobile-page-title">{PAGE_LABELS[page]}</span>
           <div className="mobile-logo">
             <span className="sb-logo-text">AS</span>
-            <span className="sb-logo-dot">.</span>
+            <span className="sb-logo-dot" />
           </div>
         </header>
 
@@ -76,7 +84,9 @@ function AdminApp() {
 export default function App() {
   return (
     <AuthProvider>
-      <AdminApp />
+      <ThemeProvider>
+        <AdminApp />
+      </ThemeProvider>
     </AuthProvider>
   )
 }

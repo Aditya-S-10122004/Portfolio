@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import './Login.css'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+const API = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/+$/, '')
 
 export default function Login() {
   const { login } = useAuth()
@@ -25,62 +25,88 @@ export default function Login() {
       if (res.ok) {
         login(data.token, data.username)
       } else {
-        setError(data.error || 'Login failed')
+        setError(data.error || 'Login verification failed')
       }
     } catch {
-      setError('Server error. Make sure the backend is running.')
+      setError('Backend unreachable. Please verify server status on port 5000.')
     }
     setLoading(false)
   }
 
   return (
     <div className="login-page">
-      <div className="login-bg" />
+      <div className="login-ambient login-ambient-yellow" />
+      <div className="login-ambient login-ambient-green" />
 
-      <div className="login-card">
-        <div className="login-logo">
-          <span className="l-logo-text">AS</span>
-          <span className="l-logo-dot">.</span>
+      <div className="login-card architectural-card">
+        <div className="login-logo-lockup">
+          <span className="l-logo-monogram">AS</span>
+          <span className="l-logo-dot" />
         </div>
-        <h1 className="login-title">Admin Dashboard</h1>
-        <p className="login-sub">Sign in to manage your portfolio</p>
 
-        {error && <div className="alert alert-error">{error}</div>}
+        <h1 className="login-title">Admin Console</h1>
+        <p className="login-sub">Authenticate to access portfolio controls & databases</p>
+
+        {error && (
+          <div className="alert alert-error" role="alert">
+            <span>✕</span> {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group-a">
-            <label className="form-label">Username</label>
+            <label className="form-label" htmlFor="login-username">
+              Username
+            </label>
             <input
+              id="login-username"
               className="form-input"
               type="text"
               placeholder="AdityaSadalagi"
               value={form.username}
-              onChange={e => setForm(f => ({ ...f, username: e.target.value }))}
+              onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
               required
+              autoFocus
             />
           </div>
 
           <div className="form-group-a">
-            <label className="form-label">Password</label>
+            <label className="form-label" htmlFor="login-password">
+              Security Key / Password
+            </label>
             <div className="pw-wrap">
               <input
+                id="login-password"
                 className="form-input"
                 type={showPw ? 'text' : 'password'}
-                placeholder="••••••••"
+                placeholder="••••••••••••"
                 value={form.password}
-                onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
                 required
               />
-              <button type="button" className="pw-toggle" onClick={() => setShowPw(s => !s)}>
+              <button
+                type="button"
+                className="pw-toggle"
+                onClick={() => setShowPw((s) => !s)}
+                aria-label={showPw ? 'Hide password' : 'Show password'}
+              >
                 {showPw ? '🙈' : '👁️'}
               </button>
             </div>
           </div>
 
-          <button type="submit" className="btn-a btn-primary-a login-btn" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign In →'}
+          <button
+            type="submit"
+            className="btn-a btn-primary-a login-btn"
+            disabled={loading}
+          >
+            {loading ? 'Validating Token...' : 'Enter Studio →'}
           </button>
         </form>
+
+        <div className="login-footer-meta">
+          <span>Aditya Sadalagi Portfolio · Protected Route</span>
+        </div>
       </div>
     </div>
   )

@@ -170,7 +170,7 @@ export default function Certificates() {
                       }
                     </td>
                     <td style={{ fontWeight: 600 }}>{c.title}</td>
-                    <td style={{ color: 'var(--accent-cyan)' }}>{c.issuer}</td>
+                    <td style={{ color: 'var(--brand-green)', fontWeight: 600 }}>{c.issuer}</td>
                     <td style={{ fontFamily: 'var(--mono)', fontSize: '0.82rem', color: 'var(--text-sec)' }}>
                       {c.issue_date
                         ? new Date(c.issue_date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })

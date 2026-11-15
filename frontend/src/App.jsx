@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import './App.css'
+import { ThemeProvider } from './context/ThemeContext'
+import Loader from './components/Loader'
 import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,44 +15,41 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import useReveal from './hooks/useReveal'
 
-// Strip trailing slash so VITE_API_URL=/api/ and /api both work correctly
 const API = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/+$/, '')
-
-// Safety: if API returns an error object instead of array, use []
 const toArray = (data) => (Array.isArray(data) ? data : [])
 
-function App() {
-  const [projects,     setProjects]     = useState([])
-  const [skills,       setSkills]       = useState([])
-  const [placements,   setPlacements]   = useState([])
-  const [links,        setLinks]        = useState([])
+function PortfolioContent() {
+  const [projects, setProjects] = useState([])
+  const [skills, setSkills] = useState([])
+  const [placements, setPlacements] = useState([])
+  const [links, setLinks] = useState([])
   const [certificates, setCertificates] = useState([])
-  const [loading,      setLoading]      = useState(true)
+  const [initialLoading, setInitialLoading] = useState(true)
 
   useReveal()
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API}/projects`).then(r => r.json()).then(toArray).catch(() => []),
-      fetch(`${API}/skills`).then(r => r.json()).then(toArray).catch(() => []),
-      fetch(`${API}/placements`).then(r => r.json()).then(toArray).catch(() => []),
-      fetch(`${API}/links`).then(r => r.json()).then(toArray).catch(() => []),
-      fetch(`${API}/certificates`).then(r => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/projects`).then((r) => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/skills`).then((r) => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/placements`).then((r) => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/links`).then((r) => r.json()).then(toArray).catch(() => []),
+      fetch(`${API}/certificates`).then((r) => r.json()).then(toArray).catch(() => []),
     ]).then(([proj, sk, place, lnk, certs]) => {
       setProjects(proj)
       setSkills(sk)
       setPlacements(place)
       setLinks(lnk)
       setCertificates(certs)
-      setLoading(false)
     })
   }, [])
 
   return (
     <>
+      {initialLoading && <Loader onFinished={() => setInitialLoading(false)} />}
       <Cursor />
       <Navbar links={links} />
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Skills skills={skills} />
@@ -64,4 +63,10 @@ function App() {
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <ThemeProvider>
+      <PortfolioContent />
+    </ThemeProvider>
+  )
+}
