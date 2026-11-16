@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './Certificates.css'
 
 function CertModal({ cert, onClose }) {
@@ -14,61 +15,64 @@ function CertModal({ cert, onClose }) {
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div className="cert-modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="cert-modal-dialog architectural-card" role="dialog" aria-modal="true">
         <button className="cert-modal-close" onClick={onClose} aria-label="Close modal">
           ✕
         </button>
 
-        {cert.image_url && (
-          <div className="cert-modal-img-wrap">
-            <img src={cert.image_url} alt={cert.title} className="cert-modal-img" />
-          </div>
-        )}
-
-        <div className="cert-modal-body">
-          <div className="cert-modal-badge">
-            <span className="cert-modal-dot" />
-            <span>Verified Certification</span>
-          </div>
-
-          <h2 className="cert-modal-title">{cert.title}</h2>
-          
-          <div className="cert-meta-row">
-            <div className="cert-meta-item">
-              <span className="meta-lbl">Issued By</span>
-              <span className="meta-val">{cert.issuer}</span>
+        <div className="cert-modal-body-scroll">
+          {cert.image_url && (
+            <div className="cert-modal-img-wrap">
+              <img src={cert.image_url} alt={cert.title} className="cert-modal-img" />
             </div>
-            {cert.issue_date && (
+          )}
+
+          <div className="cert-modal-body">
+            <div className="cert-modal-badge">
+              <span className="cert-modal-dot" />
+              <span>Verified Certification</span>
+            </div>
+
+            <h2 className="cert-modal-title">{cert.title}</h2>
+            
+            <div className="cert-meta-row">
               <div className="cert-meta-item">
-                <span className="meta-lbl">Date of Issue</span>
-                <span className="meta-val">
-                  {new Date(cert.issue_date).toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: 'long',
-                  })}
-                </span>
+                <span className="meta-lbl">Issued By</span>
+                <span className="meta-val">{cert.issuer}</span>
+              </div>
+              {cert.issue_date && (
+                <div className="cert-meta-item">
+                  <span className="meta-lbl">Date of Issue</span>
+                  <span className="meta-val">
+                    {new Date(cert.issue_date).toLocaleDateString('en-IN', {
+                      year: 'numeric',
+                      month: 'long',
+                    })}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {cert.credential_url && (
+              <div className="cert-modal-footer">
+                <a
+                  href={cert.credential_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-green btn-pill"
+                >
+                  <span>Verify Online Credential</span>
+                  <span>↗</span>
+                </a>
               </div>
             )}
           </div>
-
-          {cert.credential_url && (
-            <div className="cert-modal-footer">
-              <a
-                href={cert.credential_url}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-green btn-pill"
-              >
-                <span>Verify Online Credential</span>
-                <span>↗</span>
-              </a>
-            </div>
-          )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

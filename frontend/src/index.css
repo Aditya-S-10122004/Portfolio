@@ -155,6 +155,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -163,6 +165,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background-color var(--trans-base), color var(--trans-base);
   position: relative;
   min-height: 100vh;
@@ -236,12 +239,16 @@ button {
   padding: 0 var(--container-pad);
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .section {
   padding: var(--section-pad);
   position: relative;
   z-index: 1;
+  width: 100%;
+  overflow-x: clip;
+  scroll-margin-top: 80px;
 }
 
 /* ── EDITORIAL SECTION HEADINGS ── */

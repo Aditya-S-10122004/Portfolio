@@ -79,7 +79,6 @@ export default function Skills({ skills }) {
         {/* Modern Skills Grid */}
         <div className="skills-matrix-grid">
           {filteredSkills.map((sk, index) => {
-            const level = sk.level || 75
             return (
               <div
                 key={sk.id || sk.name}

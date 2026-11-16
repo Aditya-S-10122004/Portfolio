@@ -27,6 +27,17 @@
   }
 }
 
+.placement-bento-tile-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.placement-bento-tile-group .placement-bento-tile {
+  width: 100%;
+  flex: 1;
+}
+
 .placement-bento-tile {
   background: var(--bg-card);
   border: 1.5px solid var(--border-subtle);
@@ -120,6 +131,32 @@
   border-radius: var(--radius-lg);
   padding: clamp(20px, 3.5vw, 36px);
   box-shadow: var(--shadow-lg);
+}
+
+.dossier-mobile-inline {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .dossier-mobile-inline {
+    display: none !important;
+  }
+}
+
+.dossier-desktop-only {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .dossier-desktop-only {
+    display: block;
+  }
 }
 
 .dossier-header {

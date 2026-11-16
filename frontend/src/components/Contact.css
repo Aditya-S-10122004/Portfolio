@@ -10,15 +10,23 @@
 
 .contact-editorial-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(24px, 4vw, 40px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 40px);
   align-items: start;
+  width: 100%;
+  min-width: 0;
 }
 
 @media (min-width: 960px) {
   .contact-editorial-layout {
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 400px minmax(0, 1fr);
   }
+}
+
+.contact-channels-column,
+.contact-form-column {
+  width: 100%;
+  min-width: 0;
 }
 
 /* ── LEFT CHANNELS ── */
@@ -26,7 +34,9 @@
   background: var(--bg-card);
   border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: clamp(24px, 4vw, 36px);
+  padding: clamp(18px, 4vw, 36px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .channels-title {
@@ -53,17 +63,20 @@
 .channel-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 12px 14px;
   background: var(--bg-card-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .channel-icon-box {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -79,6 +92,7 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .channel-label {
@@ -90,12 +104,14 @@
 }
 
 .channel-value {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-primary);
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .email-link:hover {
@@ -111,12 +127,13 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: var(--radius-xs);
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   cursor: pointer;
+  flex-shrink: 0;
   transition: all var(--trans-fast);
 }
 
@@ -154,7 +171,9 @@
   background: var(--bg-card);
   border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: clamp(24px, 4vw, 40px);
+  padding: clamp(18px, 4vw, 40px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-card-title {
