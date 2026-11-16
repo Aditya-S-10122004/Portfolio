@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import './Sidebar.css'
@@ -17,6 +17,18 @@ export default function Sidebar({ activePage, onNavigate, mobileOpen, onMobileCl
   const { user, logout } = useAuth()
   const { theme, toggleTheme } = useTheme()
   const [collapsed, setCollapsed] = useState(false)
+
+  // Prevent background scroll when mobile sidebar is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
 
   const handleNav = (path) => {
     onNavigate(path)
